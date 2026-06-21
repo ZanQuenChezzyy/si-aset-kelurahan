@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Dashboard;
 use App\Filament\Pages\EditProfile;
 use App\Filament\Pages\Login;
 use Caresome\FilamentAuthDesigner\AuthDesignerPlugin;
@@ -14,7 +15,6 @@ use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
@@ -36,11 +36,11 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->spa()
             ->id('admin')
-            ->path('admin')
+            ->path('/')
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->login(Login::class)
             ->profile(EditProfile::class)
-            ->brandLogo('/images/logo/laravelchezzy.png')
+            // ->brandLogo('/images/logo/laravelchezzy.png')
             ->brandLogoHeight('2.5rem')
             ->defaultThemeMode(ThemeMode::System)
             ->colors([
@@ -72,7 +72,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugins([
                 EasyFooterPlugin::make()
                     ->withBorder()
-                    ->withSentence('LaravelChezzy. All rights reserved.'),
+                    ->withSentence('Asset Kelurahan. All rights reserved.'),
                 AuthDesignerPlugin::make()
                     ->defaults(
                         fn($config) => $config
@@ -82,8 +82,8 @@ class AdminPanelProvider extends PanelProvider
                             ->mediasize('70%')
                     )
                     ->themeToggle(),
-                StickyTableHeaderPlugin::make()
-                    ->shouldScrollToTopOnPageChanged(enabled: true, behavior: "smooth"),
+                // StickyTableHeaderPlugin::make()
+                //     ->shouldScrollToTopOnPageChanged(enabled: true, behavior: 'smooth'),
             ])
             ->middleware([
                 EncryptCookies::class,
